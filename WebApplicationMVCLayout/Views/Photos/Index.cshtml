@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplicationMVCLayout.Models.Photo>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Username = "arwa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageMimeType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @*  @Html.DisplayFor(modelItem => item.PhotoFile)*@
+                @if (item.PhotoFile != null)
+                {
+                    <div class="photo-display">
+                        <img width="100" src="@Url.Action("GetImage", "Photos", new { id = item.PhotoId })" />
+                    </div>
+                }
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ImageMimeType)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+               |
+                @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
+               
+            </td>
+        </tr>
+    }
+    
+    </table>
+    <div style="border:solid 4px">
+
+        @Html.Action("_PhotoGallery", "Photos", new { number = 2 })
+    </div>
+

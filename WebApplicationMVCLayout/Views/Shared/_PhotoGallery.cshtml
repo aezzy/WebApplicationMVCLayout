@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebApplicationMVCLayout.Models.Photo>
+
+@foreach (var item in Model)
+{
+    <p style="border:dashed 3px">
+        <h3>@item.Title</h3>
+
+        @if (item.PhotoFile != null)
+        {
+            <img width="200" src="@Url.Action("GetImage", "Photos", new { id = item.PhotoId })" />
+        }
+
+    <p>
+        Created By:
+        @Html.DisplayFor(model => item.Username)
+    </p>
+
+    <p>
+        Created On:
+        @Html.DisplayFor(model => item.CreatedDate)
+    </p>
+
+    @Html.ActionLink("Display Details", "Details", new { id = item.PhotoId })
+    </p>
+}

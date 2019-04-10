@@ -1,0 +1,68 @@
+﻿@model WebApplicationMVCLayout.Models.Photo
+
+@{
+    ViewBag.Title = "Display";
+    ViewBag.Username = "arwa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div>
+        <h4>Photo</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dd>
+                @if (Model.PhotoFile != null)
+                {
+                    <div class="photo-display">
+                        <img width="300" src="@Url.Action("GetImage", "Photos", new { id = Model.PhotoId })" />
+                    </div>
+                }
+                @*@Html.DisplayFor(model => model.PhotoFile)*@
+            </dd>
+    
+            @*<dt>
+                @Html.DisplayNameFor(model => model.ImageMimeType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ImageMimeType)
+            </dd>*@
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        
+        @Html.ActionLink("Back to List", "Index")
+    </p>
